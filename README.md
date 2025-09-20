@@ -1,1 +1,0 @@
-Hola este es un Proyecto de propuesto por alura para desarrollar la lógica en Programación. Faltan algunas modificaciones por hacer tal vez en la parte de css, estaré trabajando en esto. Es te proyecto es muy funcionalñ y cuenta con las especificaciones dadas.

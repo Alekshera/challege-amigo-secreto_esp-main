@@ -1,6 +1,9 @@
 // Lista para almacenar los nombres de los amigos
 const listaAmigos = [];
 
+// Array para almacenar los amigos ya sorteados
+const amigosSorteados = [];
+
 // Referencias a los elementos del DOM
 const inputAmigo = document.getElementById("amigo");
 const ulListaAmigos = document.getElementById("listaAmigos");
@@ -11,14 +14,12 @@ function agregarAmigo() {
     if (nombre === "") {
         alert("Por favor, ingresa un nombre.");
         inputAmigo.focus();
-        return
+        return;
     }
-         
-        listaAmigos.push(nombre);
-        mostrarListaAmigos();
-        inputAmigo.value = "";
-        inputAmigo.focus();
-    
+    listaAmigos.push(nombre);
+    mostrarListaAmigos();
+    inputAmigo.value = "";
+    inputAmigo.focus();
 }
 
 // Función para mostrar la lista de amigos en el HTML
@@ -31,14 +32,11 @@ function mostrarListaAmigos() {
     });
 }
 
-// ...existing code...
-
 // Referencia al ul de resultados
 const ulResultado = document.getElementById("resultado");
 
 // Función para asignar amigos secretos
 function sortearAmigo() {
-    const ulResultado = document.getElementById("resultado");
     ulResultado.innerHTML = ""; // Limpia resultados anteriores
 
     if (listaAmigos.length === 0) {
@@ -48,9 +46,23 @@ function sortearAmigo() {
         return;
     }
 
-    // Generar índice aleatorio
-    const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
-    const amigoSorteado = listaAmigos[indiceAleatorio];
+    if (amigosSorteados.length === listaAmigos.length) {
+        const li = document.createElement("li");
+        li.textContent = "Todos los amigos ya han sido sorteados.";
+        ulResultado.appendChild(li);
+        return;
+    }
+
+    let indiceAleatorio;
+    let amigoSorteado;
+
+    // Buscar un amigo que no haya sido sorteado aún
+    do {
+        indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
+        amigoSorteado = listaAmigos[indiceAleatorio];
+    } while (amigosSorteados.includes(amigoSorteado));
+
+    amigosSorteados.push(amigoSorteado);
 
     // Mostrar el resultado
     const li = document.createElement("li");

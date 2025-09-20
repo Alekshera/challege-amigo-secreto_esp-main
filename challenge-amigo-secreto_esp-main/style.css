@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #4B69FD;
+    --color-primary: hwb(225 3% 72%);
     --color-secondary: #FFF9EB;
     --color-tertiary: #C4C4C4;
     --color-button: #fe652b;
@@ -17,7 +17,7 @@
 
 body {
     height: 100vh;
-    background-color: var(--color-primary);
+    background: linear-gradient(#1354A5 0%, #041832 33.33%, #041832 66.67%, #01080E 100%);
     display: flex;
     justify-content: center;
     align-items: center;
